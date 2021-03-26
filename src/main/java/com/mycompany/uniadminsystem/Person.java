@@ -9,16 +9,18 @@ package com.mycompany.uniadminsystem;
  *
  * @author geusa
  */
+
+
 public class Person {
-    private String name;
+    private String FullName;
     
     // Getter
   public String getName() {
-    return name;
+    return this.FullName;
   }
 
   // Setter
   public void setName(String newName) {
-    this.name = newName;
+    this.FullName = newName;
   }
 }

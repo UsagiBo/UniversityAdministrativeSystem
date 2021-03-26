@@ -1,0 +1,19 @@
+Home page
+
+1. List of Teachers and Students
+	- List of Teachers (Name, Number of courses)
+	- List of Students (Name, Year)
+
+2. List of Students and his Subjects
+
+3. List of Students and number of Credits
+
+4. List of Teachers ( Subjects and number of 
+Students for each Subject)
+
+5. List of the 3 Subjects with most Students
+
+6. List of the 3 Teachers with most Students for all Subjects
+
+
+

@@ -7,26 +7,43 @@ package com.mycompany.uniadminsystem;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author geusa
  */
+@Entity @Table(name= "Teachers")
 public class Teacher extends Person {
-    private String name;
-    public Title title;
-    public Set<Subject> subjects;
+    @OneToOne
+    @Id private int ID;
+    @Column(name = "FullName")
+    private String FullName;
+    @Column(name = "Title")
+    public String Title;
+    //idk
+    public Set<Subject> Subjects;
     
-    public Teacher(String n,Title t){
-        name = n;
-        title = t;
-        subjects = new HashSet<Subject>();
+    public Teacher(String n,String t){
+        this.FullName = n;
+        this.Title = t;
+        this.Subjects = new HashSet<Subject>();
     }
     
-    void addTitle(Title t){
-    title = t;
+    String getTitle(){
+    return this.Title;
+    }
+    void setTitle(String t){
+    this.Title = t;
     }
     
+    int getID(){
+    return this.ID;
+    }
     
     
     

@@ -14,10 +14,9 @@ import java.util.Set;
 public class Title {
     private String title;
     
-    
-    
-    
-    
-
-    
+    String getTitle(){
+        return this.title;
+    }
+    void setTitle(String titl){
+    this.title =titl; }  
 }
