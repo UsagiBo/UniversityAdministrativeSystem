@@ -9,7 +9,10 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -17,21 +20,24 @@ import javax.persistence.Table;
  *
  * @author geusa
  */
-@Entity @Table(name= "Teachers")
+@Entity (name="Teachers") @Table(name= "Teachers")
 public class Teacher extends Person {
-    @OneToOne
-    @Id private int ID;
-    @Column(name = "FullName")
-    private String FullName;
+    @Id 
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
+    private Integer ID;
+    //@Column(name = "FullName")
+    //private String FullName;
     @Column(name = "Title")
     public String Title;
-    //idk
-    public Set<Subject> Subjects;
+    @OneToMany
+    public Set<Subject> subjects;
     
+    public Teacher(){}
     public Teacher(String n,String t){
-        this.FullName = n;
+        this.setName(n);
         this.Title = t;
-        this.Subjects = new HashSet<Subject>();
+        //this.Subjects = new HashSet<Subject>();
     }
     
     String getTitle(){
@@ -41,12 +47,9 @@ public class Teacher extends Person {
     this.Title = t;
     }
     
-    int getID(){
-    return this.ID;
+    Integer getID(){
+    return ID;
     }
-    
-    
-    
     
     
 }

@@ -5,22 +5,26 @@
  */
 package com.mycompany.uniadminsystem;
 
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+
 /**
  *
  * @author geusa
  */
 
-
+@MappedSuperclass
 public class Person {
+    @Column(name = "FullName", length = 255)
     private String FullName;
     
-    // Getter
+    // Geter
   public String getName() {
-    return this.FullName;
+    return FullName;
   }
 
-  // Setter
+  // Seter
   public void setName(String newName) {
-    this.FullName = newName;
+    FullName = newName;
   }
 }

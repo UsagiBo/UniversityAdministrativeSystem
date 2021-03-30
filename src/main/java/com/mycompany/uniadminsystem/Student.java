@@ -7,17 +7,18 @@ package com.mycompany.uniadminsystem;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Query;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.transaction.UserTransaction;
 
 
 /**
@@ -26,39 +27,57 @@ import javax.transaction.UserTransaction;
  */
 // @Entity indicates that the instances of this class will be stored persistently.
 // @Table specifies the name of the database table to be used for storing the entities
-@Entity @Table(name = "Students")
+@Entity(name="Students") @Table(name = "Students")
 public class Student extends Person implements Serializable {
     @Id 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String ID;
-    @Column(name = "FullName", length = 255)
-    private String FullName;
-    @Column(name = "Semester", length = 255)
+    //eneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
+    private Integer ID;
+    //@Column(name = "FullName", length = 255)
+    //private String FullName;
+    @Column(name = "StudyYear", length = 255)
     private int Semester;
-    private Set<Subject> Subjects;
+    @ManyToMany
+    /* Not required but used in case JPA's naming conventions don't match our table/row names*/
+    @JoinTable(
+            name = "enrollments", 
+            joinColumns = @JoinColumn(name = "StudentID"), 
+            inverseJoinColumns = @JoinColumn(name = "SubjectID"))
+    private List<Subject> Subjects = new ArrayList<Subject>();
+    
     
     public Student(){}
-    public Student(String id, String name, int semester){
-        this.ID = id; 
-        this.FullName = name;
+    public Student( String name, int semester){
+        this.setName(name);
         this.Semester = semester;
         
     }
     
-    int getSemester (){
+     public Integer getId (){
+        return this.ID;
+    }
+    public int getSemester (){
         return this.Semester;
     }
-    void setSemester (int semester){
+    public void setSemester (int semester){
     this.Semester = semester;
     }
     
-    void takeSubject(Subject subject){
+    List<Subject> getSubjects(){
+        return this.Subjects;
+    }
+
+    void addSubject(Subject subject){
         this.Subjects.add(subject);
     }
-    void dropSubject(Subject subject){
+    
+    void removeSubject(Subject subject){
         this.Subjects.remove(subject);
     }
-    
+
+
+   /* 
     //CRUD
     //List of students 
     public static List<Student> retrieveAll( EntityManager em) {
@@ -81,7 +100,7 @@ public class Student extends Person implements Serializable {
    Student student = null;
   Student.clearData( em, ut);  // first clear the books table
   ut.begin();
-  student = new Student("006251587X","Sherry Pie", 1);
+  student = new Student("Sherry Pie", 1);
   em.persist( student);
   student = new Student("0465026567","Gorge Pete", 2);
   em.persist( student);
@@ -89,6 +108,7 @@ public class Student extends Person implements Serializable {
   em.persist( student);
   ut.commit();
 }
+*/
     
     
     
