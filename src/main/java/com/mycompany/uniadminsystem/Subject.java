@@ -18,12 +18,14 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author geusa
  */
 @Entity(name="Subjects")  @Table(name= "Subjects")
+@XmlRootElement
 public class Subject {
     
     @Id 
@@ -47,28 +49,28 @@ public class Subject {
     
     public Subject(){}
     
-    String getName(){
+    public String getName(){
         return this.Name;
     }
-    void setName(String name){
+    public void setName(String name){
         this.Name = name;
     }
     
-    double getCredit(){
+    public double getCredit(){
         return this.Credits;
     }
-    void setCredit(double credit){
+    public void setCredit(double credit){
         this.Credits = credit;
     }
     
-    Teacher getTeacher(){
+    public Teacher getTeacher(){
     return this.Teacher;
     }
-    void setTeacher(Teacher teacher){
+    public void setTeacher(Teacher teacher){
     this.Teacher = teacher;
     }
     
-    List<Student> getStudents(){
+    public List<Student> getStudents(){
     return this.Students;
     }
 

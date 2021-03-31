@@ -1,24 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
-    version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
-    <persistence-unit name="sample" transaction-type="RESOURCE_LOCAL">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    <persistence-unit name="unidb" transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 <exclude-unlisted-classes>false</exclude-unlisted-classes>
 
         <properties>
-  <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver" />
-  <!--  <property name="javax.persistence.jdbc.url"
-    value="jdbc:derby://localhost:1527/sample;create=true" /> -->
-    
-  <property name="javax.persistence.jdbc.url"
-    value="jdbc:derby://localhost:1527/universitydb;create=true" />
-  <property name="javax.persistence.jdbc.user" value="root" />
-  <property name="javax.persistence.jdbc.password" value="password" />
+  <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+  <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/universitydb;create=true"/>
+  <property name="javax.persistence.jdbc.user" value="root"/>
+  <property name="javax.persistence.jdbc.password" value="password"/>
+  <property name="javax.persistence.schema-generation.scripts.create-target" value="data.sql"/>
 
   <!-- EclipseLink should create the database schema automatically / create-tables-->
-  <property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
-  <property name="eclipselink.ddl-generation.output-mode" value="database" />
+  <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+  <property name="eclipselink.ddl-generation.output-mode" value="database"/>
+  <!-- import data on cration <property name="javax.persistence.sql-load-script-source" value="data.sql" />-->
+ <!-- create db based on script -->
+
         </properties>
 
     </persistence-unit>

@@ -15,12 +15,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author geusa
  */
 @Entity (name="Teachers") @Table(name= "Teachers")
+@XmlRootElement
 public class Teacher extends Person {
     @Id 
     @GeneratedValue(strategy = GenerationType.AUTO)

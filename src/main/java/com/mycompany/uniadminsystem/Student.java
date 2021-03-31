@@ -19,6 +19,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 /**
@@ -28,6 +29,7 @@ import javax.persistence.Table;
 // @Entity indicates that the instances of this class will be stored persistently.
 // @Table specifies the name of the database table to be used for storing the entities
 @Entity(name="Students") @Table(name = "Students")
+@XmlRootElement
 public class Student extends Person implements Serializable {
     @Id 
     //eneratedValue(strategy = GenerationType.AUTO)
@@ -64,15 +66,15 @@ public class Student extends Person implements Serializable {
     this.Semester = semester;
     }
     
-    List<Subject> getSubjects(){
+    public List<Subject> getSubjects(){
         return this.Subjects;
     }
 
-    void addSubject(Subject subject){
+    public void addSubject(Subject subject){
         this.Subjects.add(subject);
     }
     
-    void removeSubject(Subject subject){
+    public void removeSubject(Subject subject){
         this.Subjects.remove(subject);
     }
 
