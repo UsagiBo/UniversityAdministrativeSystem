@@ -5,28 +5,27 @@
  */
 package com.mycompany.uniadminsystem;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author geusa
  */
 @Entity(name="Subjects")  @Table(name= "Subjects")
-@XmlRootElement
-public class Subject {
+public class Subject implements Serializable {
     
     @Id 
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,11 +39,7 @@ public class Subject {
     @JoinColumn(name = "TeacherID")
     @OneToOne
     private Teacher Teacher;
-    @ManyToMany(mappedBy = "Subjects")
-    /*@JoinTable(
-            name = "enrollments", 
-            joinColumns = @JoinColumn(name = "SubjectID"), 
-            inverseJoinColumns = @JoinColumn(name = "StudentID"))*/
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "Subjects")
     List<Student> Students = new ArrayList<Student>();
     
     public Subject(){}

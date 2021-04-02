@@ -5,35 +5,31 @@
  */
 package com.mycompany.uniadminsystem;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author geusa
  */
 @Entity (name="Teachers") @Table(name= "Teachers")
-@XmlRootElement
-public class Teacher extends Person {
+public class Teacher extends Person implements Serializable {
+    
     @Id 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private Integer ID;
-    //@Column(name = "FullName")
-    //private String FullName;
     @Column(name = "Title")
-    public String Title;
+    private String Title;
     @OneToMany
-    public Set<Subject> subjects;
+    public List<Subject> Subjects;
     
     public Teacher(){}
     public Teacher(String n,String t){
@@ -41,16 +37,29 @@ public class Teacher extends Person {
         this.Title = t;
         //this.Subjects = new HashSet<Subject>();
     }
-    
-    String getTitle(){
+     public Integer getId (){
+        return this.ID;
+    }
+    public String getTitle(){
     return this.Title;
     }
-    void setTitle(String t){
+    public void setTitle(String t){
     this.Title = t;
     }
     
-    Integer getID(){
+    public Integer getID(){
     return ID;
+    }
+     public List<Subject> getSubjects(){
+        return this.Subjects;
+    }
+
+    public void addSubject(Subject subject){
+        this.Subjects.add(subject);
+    }
+    
+    public void removeSubject(Subject subject){
+        this.Subjects.remove(subject);
     }
     
     

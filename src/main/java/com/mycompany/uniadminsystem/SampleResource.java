@@ -15,7 +15,7 @@ public class SampleResource {
 
 	@GET
         @Produces("text/html")
-    public String getHtml() {
+        public String getHtml() {
         return "<html lang=\"en\"><body><h1>Hello, World!!</h1></body></html>";
     }
 	/*public Response message() {
