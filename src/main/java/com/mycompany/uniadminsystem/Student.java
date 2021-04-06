@@ -31,11 +31,11 @@ public class Student extends Person implements Serializable {
     @Id 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
-    private Integer ID;
+    private Long ID;
 
     @Column(name = "StudyYear", length = 255)
     private int Semester;
-    @ManyToMany
+    @ManyToMany()
     /* Not required but used in case JPA's naming conventions don't match our table/row names*/
     @JoinTable(
             name = "enrollments", 
@@ -51,7 +51,7 @@ public class Student extends Person implements Serializable {
         
     }
     
-     public Integer getId (){
+     public long getId (){
         return this.ID;
     }
     public int getSemester (){
@@ -63,6 +63,9 @@ public class Student extends Person implements Serializable {
     
     public List<Subject> getSubjects(){
         return this.Subjects;
+    }
+    public void setSubjects(List<Subject> sbj){
+    this.Subjects = sbj;
     }
 
     public void addSubject(Subject subject){

@@ -25,10 +25,10 @@ public class Teacher extends Person implements Serializable {
     @Id 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
-    private Integer ID;
+    private Long ID;
     @Column(name = "Title")
     private String Title;
-    @OneToMany
+    @OneToMany( targetEntity=Subject.class )
     public List<Subject> Subjects;
     
     public Teacher(){}
@@ -37,7 +37,7 @@ public class Teacher extends Person implements Serializable {
         this.Title = t;
         //this.Subjects = new HashSet<Subject>();
     }
-     public Integer getId (){
+     public long getId (){
         return this.ID;
     }
     public String getTitle(){
@@ -47,13 +47,13 @@ public class Teacher extends Person implements Serializable {
     this.Title = t;
     }
     
-    public Integer getID(){
-    return ID;
-    }
      public List<Subject> getSubjects(){
         return this.Subjects;
     }
-
+    public void setSubjects(List<Subject> subjects){
+        this.Subjects = subjects;
+    }
+/*
     public void addSubject(Subject subject){
         this.Subjects.add(subject);
     }
@@ -61,6 +61,6 @@ public class Teacher extends Person implements Serializable {
     public void removeSubject(Subject subject){
         this.Subjects.remove(subject);
     }
-    
+    */
     
 }

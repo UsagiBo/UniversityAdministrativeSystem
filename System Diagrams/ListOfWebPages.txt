@@ -4,16 +4,25 @@ Home page
 	- List of Teachers (Name, Number of courses)
 	- List of Students (Name, Year)
 
-2. List of Students and his Subjects
+2. Done - List of Students and his/her Subjects
 
-3. List of Students and number of Credits
+3. List of Students and number of Credits (Students/sum(Subjects subject.getCredit))
 
-4. List of Teachers ( Subjects and number of 
+4. Done - List of Teachers ( Subjects and number of 
 Students for each Subject)
 
-5. List of the 3 Subjects with most Students
+5. List of the 3 Subjects with most Students (Subject. students.size())
 
-6. List of the 3 Teachers with most Students for all Subjects
+6. List of the 3 Teachers with most Students for all Subjects 
 
+Select l.FULLNAME, SUBJECTID, q.FULLNAME ,Count(StudentID) 
+FROM root.Teachers l  
+Inner Join teachers_subjects ts 
+on ts.TEACHERS_ID = l.id
+Inner Join  enrollments e  
+on e.subjectID  = ts.subjects_id
+Inner Join  subjects q  
+on q.id  = ts.subjects_id
 
-
+group by l.fullname ,l.title, subjectid, q.fullname, 4
+order by 4 DESC;
